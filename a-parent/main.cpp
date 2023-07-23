@@ -12,11 +12,19 @@
 *****************************************************************************************/
 
 #include <iostream>
+#include "../lib/process.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello World!" << endl;
+    Process p({"./b-child"}, true);
+    p.run();
+    while (p.isAlive()) {
+        cout << "parent is alive" << endl;
+        sleep(1);
+    }
+    cout << "parent is dead" << endl;
+
     return 0;
 }
