@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "shared_mutex": "cpp"
+        "shared_mutex": "cpp",
+        "filesystem": "cpp",
+        "ostream": "cpp"
     }
 }

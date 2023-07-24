@@ -9,6 +9,8 @@
 #include <sys/shm.h>
 #include <string.h>
 
+using namespace std;
+
 class SharedMemory
 {
 private:
@@ -23,6 +25,8 @@ public:
     bool create(size_t size);
     bool attach(int shmid);
     bool detach();
+    void write(string data);
+    string read();
     bool remove();
 
     void *ptr() const;

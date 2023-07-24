@@ -89,6 +89,8 @@ int main()
         exit(0);
     }
     
+    // remove shared memory
+    shmctl(shmid, IPC_RMID, NULL);
 
     return 0;
 }

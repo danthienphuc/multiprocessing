@@ -1,3 +1,5 @@
+#include <iostream>
+#include <unistd.h>
 #include "fileIO.h"
 
 using namespace std;
@@ -10,29 +12,33 @@ FileIO::~FileIO()
 {
 }
 
-void FileIO::openFileToRead(string fileName)
+void FileIO::open(string fileName)
 {
-    file.open(fileName, ios::in);
+    char path[256];
+    string p = getcwd(path, 256);
+    string fpath = p + "/data/" + fileName + ".csv";
+    cout << "open: " << fpath << endl;
+    this->file.open(fpath, ios::in | ios::app);
 }
 
-void FileIO::openFileToWrite(string fileName)
+void FileIO::close()
 {
-    file.open(fileName, ios::out);
+    this->file.close();
 }
 
-void FileIO::closeFile()
+void FileIO::write(string fileName, string content)
 {
-    file.close();
+    this->open(fileName);
+    this->file << content;
+    this->file << endl;
+    this->close();
 }
 
-void FileIO::write(string content)
-{
-    file << content;
-}
-
-string FileIO::read()
+string FileIO::read(string fileName)
 {
     string content;
-    getline(file, content);
+    this->open(fileName);
+    getline(this->file, content);
+    this->close();
     return content;
 }

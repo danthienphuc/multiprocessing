@@ -13,11 +13,10 @@ class FileIO
 
         FileIO();
         ~FileIO();
-        void openFileToRead(string fileName);
-        void openFileToWrite(string fileName);
-        void closeFile();
-        void write(string content);
-        string read();
+        void open(string fileName);
+        void close();
+        void write(string fileName, string content);
+        string read(string fileName);
 };
 
 #endif // !FILEIO_H
