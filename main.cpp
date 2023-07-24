@@ -32,9 +32,7 @@ void childProcess(SharedMemory shMem){
 
 int main(){
     
-    SharedMemory shMem;
-
-    shMem.create(1024);
+    SharedMemory shMem(1024);
 
     int pid = fork();
     if(pid<0){

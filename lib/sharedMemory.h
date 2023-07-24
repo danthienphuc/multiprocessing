@@ -19,15 +19,13 @@ private:
     void *m_ptr;
 
 public:
+    SharedMemory(size_t size);
     SharedMemory();
     ~SharedMemory();
 
-    bool create(size_t size);
-    bool attach(int shmid);
-    bool detach();
     void write(string data);
     string read();
-    bool remove();
+    void remove();
 
     void *ptr() const;
     int shmid() const;

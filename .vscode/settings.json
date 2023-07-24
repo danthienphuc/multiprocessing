@@ -2,6 +2,7 @@
     "files.associations": {
         "shared_mutex": "cpp",
         "filesystem": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "string": "cpp"
     }
 }

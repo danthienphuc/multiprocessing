@@ -2,6 +2,24 @@
 
 using namespace std;
 
+SharedMemory::SharedMemory(size_t size)
+{
+    m_shmid = shmget(IPC_PRIVATE, size, 0666 | IPC_CREAT);
+    if (m_shmid < 0)
+    {
+        printf("shmget error\n");
+        return;
+    }
+    m_size = size;
+    m_ptr = shmat(m_shmid, NULL, 0);
+    if (m_ptr == (void *)-1)
+    {
+        printf("shmat error\n");
+        return;
+    }
+    printf("shmid: %d\n", m_shmid);
+}
+
 SharedMemory::SharedMemory()
 {
     m_shmid = -1;
@@ -13,63 +31,26 @@ SharedMemory::~SharedMemory()
 {
     if (m_ptr != NULL)
     {
-        detach();
+        shmdt(m_ptr);
     }
-}
-
-bool SharedMemory::create(size_t size)
-{
-    m_shmid = shmget(IPC_PRIVATE, size, 0666 | IPC_CREAT);
-    if (m_shmid < 0)
+    if (m_shmid != -1)
     {
-        return false;
+        shmctl(m_shmid, IPC_RMID, NULL);
     }
-    m_size = size;
-    return true;
-}
-
-bool SharedMemory::attach(int shmid)
-{
-    m_ptr = shmat(shmid, NULL, 0);
-    if (m_ptr == (void *)-1)
-    {
-        return false;
-    }
-    m_shmid = shmid;
-    return true;
-}
-
-bool SharedMemory::detach()
-{
-    if (shmdt(m_ptr) < 0)
-    {
-        return false;
-    }
-    m_ptr = NULL;
-    return true;
 }
 
 void SharedMemory::write(string data)
 {
-    memcpy(m_ptr, &data, data.size());
+    memcpy(m_ptr, data.c_str(), m_size);
 }
 
 string SharedMemory::read()
 {
     string data;
-    memcpy(&data, m_ptr, m_size);
+    char *p = (char *)m_ptr;
+    data = p;
+    cout << "data: " << data << endl;
     return data;
-}
-
-bool SharedMemory::remove()
-{
-    if (shmctl(m_shmid, IPC_RMID, NULL) < 0)
-    {
-        return false;
-    }
-    m_shmid = -1;
-    m_size = 0;
-    return true;
 }
 
 void *SharedMemory::ptr() const

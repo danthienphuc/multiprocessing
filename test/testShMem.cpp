@@ -1,13 +1,11 @@
-#include "lib/sharedMemory.h"
+#include "../lib/sharedMemory.h"
 #include <unistd.h>
 
 using namespace std;
 
 int main()
 {
-    SharedMemory shMem;
-
-    shMem.create(2024);
+    SharedMemory shMem(1024);
 
     int pid = fork();
 
@@ -37,7 +35,7 @@ int main()
     else
     {
         printf("Parent process\n");
-        string email = "This is email from parent process (ShMem st)";
+        string email = "This is email from parent process (ShMem)";
         shMem.write(email);
 
         printf("Parent process exit\n");
