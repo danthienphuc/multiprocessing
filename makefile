@@ -18,4 +18,7 @@ ch: # Run child
 	$(DEL) b-child/main.o
 
 t:
-	echo $(LIB)
+	g++ -o test.o test.cpp
+	$(CLS)
+	./test.o
+	$(DEL) test.o
