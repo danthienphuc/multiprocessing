@@ -6,7 +6,6 @@ LIB = $(wildcard ./lib/**.cpp)
 pa: # Run parent
 	g++ -o main.o main.cpp $(LIB)
 	$(CLS)
-	@echo ">>> Running parent <<<"
 	./main.o
 	$(DEL) main.o
 
@@ -15,6 +14,12 @@ tm:
 	$(CLS)
 	./test/testm.o
 	$(DEL) ./test/testm.o
+
+ts:
+	g++ -o ./test/testSocket.o ./test/testSocket.cpp $(LIB)
+	$(CLS)
+	./test/testSocket.o
+	$(DEL) ./test/testSocket.o
 
 t:
 	g++ -o ./test/test.o ./test/test.cpp $(LIB)
