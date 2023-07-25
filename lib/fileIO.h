@@ -17,6 +17,8 @@ class FileIO
         void close();
         void write(string fileName, string content);
         string read(string fileName);
+        // Directory
+        string* listFiles(string dirName, string ext);
 };
 
 #endif // !FILEIO_H

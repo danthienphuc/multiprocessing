@@ -8,7 +8,7 @@ using namespace std;
 void parentProcess(SharedMemory shMem){
     printf("Parent process\n");
     FileIO fileIO;
-    string email = fileIO.read("sender");
+    string email = fileIO.read("emails/email_1");
     shMem.write(email);
     printf("Parent process exit\n");
 }
@@ -25,7 +25,7 @@ void childProcess(SharedMemory shMem){
         email = shMem.read();
         printf("Email from parent process:\n%s\n", email.c_str());
         FileIO fileIO;
-        fileIO.write("receiver", email);
+        fileIO.write("email_archive", email);
     }
     printf("Child process exit\n");
 }

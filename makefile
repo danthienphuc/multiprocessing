@@ -9,6 +9,12 @@ pa: # Run parent
 	./main.o
 	$(DEL) main.o
 
+tf:
+	g++ -o ./test/testf.o ./test/testFile.cpp $(LIB)
+	$(CLS)
+	./test/testf.o
+	$(DEL) ./test/testf.o
+
 tm:
 	g++ -o ./test/testm.o ./test/testShMem.cpp $(LIB)
 	$(CLS)
