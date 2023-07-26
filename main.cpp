@@ -43,6 +43,7 @@ void parentProcess(SharedMemory shMem){
     // check if child process is alive
     server.writeClient("is_alive");
     string clientMsg = server.readClient();
+    cout << "Parent process: Client message: " << clientMsg << endl;
 
     // send emails
     if(compareStrings(clientMsg,"alive")){
