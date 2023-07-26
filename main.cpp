@@ -105,7 +105,7 @@ void run(SharedMemory shMem){
     int pid = fork();
     if(pid<0){
         printf("fork error\n");
-        return;
+        run(shMem);
     }
     else if(pid==0){
         childProcess(shMem);
@@ -120,19 +120,7 @@ int main(){
     
     SharedMemory shMem(1024);
 
-    int pid = fork();
-    if(pid<0){
-        printf("fork error\n");
-        return -1;
-    }
-    else if(pid==0){
-        childProcess(shMem);
-        exit(0);
-    }
-    else{
-        parentProcess(shMem);
-    }
-
+    run(shMem);
 
     return 0;
 }
