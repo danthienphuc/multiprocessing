@@ -1,3 +1,22 @@
+# How to run
+
+Run main
+
+```makefile
+make main
+```
+
+Run test
+
+```makefile
+make test_fileIO
+make test_shmem
+make test_socket
+make t
+make test_server_socket
+make test_client_socket
+```
+
 # Multi-processing exercise
 
 * Implement a program with 2 processes, socket connection, shared memory:
@@ -43,15 +62,13 @@ Content: Content of email. Write some thing here
 * Do not use multi-threading
 * First line of email_archive.csv is: `From;To;Content`
 
-## Coding convention 
+## Coding convention
 
-* Do not write function over 80 lines 
-* Do not keep line with over 80 characters. 
-* Indent: 4 spaces 
-* Variable name: camel case, ex: cencorName, inputValueName 
-* Function name: use verd for processing function. Ex: calculateDataValue (ok) dataValueConculation (NG), Sum (OK) 
-* Constant: UPPER CASE, ex: #define MAX_THREADS 10 
-* Class name: camel case with upper the first character. Ex: CencorManager 
-* Meaning variable name: int a, b = 0 (NG). 
-
- 
+* Do not write function over 80 lines
+* Do not keep line with over 80 characters.
+* Indent: 4 spaces
+* Variable name: camel case, ex: cencorName, inputValueName
+* Function name: use verd for processing function. Ex: calculateDataValue (ok) dataValueConculation (NG), Sum (OK)
+* Constant: UPPER CASE, ex: #define MAX_THREADS 10
+* Class name: camel case with upper the first character. Ex: CencorManager
+* Meaning variable name: int a, b = 0 (NG).
